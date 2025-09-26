@@ -1,0 +1,65 @@
+html{
+    font-size: 16px;
+}
+div{
+    font-size:15px;
+}
+h1{
+    font-size: 2em;
+}
+p{
+    font-size: 1rem;
+}
+ul{
+   font-size: 1rem; 
+}
+
+#heading{
+    font-size: 36px;
+    text-align: center;
+    background-color: pink ;
+}
+
+#heading-color{
+     color: blue; 
+}
+.heading-color{
+    color: rgb(0,0,0);
+}
+.color{
+    color:blue;
+}
+
+img[title *="Presentation Convent School"]
+{
+    border: purple;
+}
+
+a[href ^= "tel"]:hover
+{
+    background: pink;
+    color: purple;
+}
+
+a:visited
+{
+background: pink;
+}
+
+a[href ^= "mailto"]:hover
+{
+    background: pink;
+    color: purple;
+}
+
+div p::first-letter{
+    font-size: 40px;
+}
+
+
+footer{
+    background: yellow;
+}
+
+
+
