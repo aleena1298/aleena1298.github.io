@@ -24,7 +24,6 @@ html {
 /*image formatting*/
 #heading img {
     width: 50%; 
-    min-width: 150px;
     max-width: 250px;            
     height: 250px;    /*helped in making it round*/    
     border-radius: 50%;        
@@ -42,10 +41,11 @@ body {
 
 
 div {
-    font-size: 15px;
+    font-size: 1rem;
     width: 90%;
-    margin: 20px 60px 10px 70px;
-    padding: 5px;
+    max-width: 5000px;
+    margin: 2vh auto;
+    padding: 1.5vh 1.5vw;
     border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     background-color: var(--bg);
