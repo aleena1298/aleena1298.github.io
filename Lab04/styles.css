@@ -34,8 +34,8 @@ html {
 
 body {
 /* removing default margins and padding */
-  margin: 0;                
-  padding: 0;
+  margin: 5px;                
+  padding: 5px;
   min-height: 100vh; /*body is taking 100% of the viewports height*/
 }
 
