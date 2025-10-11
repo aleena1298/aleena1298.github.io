@@ -15,7 +15,9 @@ html {
 /*header*/
 #heading{              
     font-weight: bold;        
-    font-family: 'Segoe UI', Arial, sans-serif; 
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-shadow: 2px 2px 5px pink; 
+    /* text-decoration: underline wavy black;  */
     font-size: 18px !important;                            
     text-align: center; 
 }
@@ -23,9 +25,9 @@ html {
 /*image formatting*/
 #heading img {
     width: 50%; 
-    max-width: 250px;            
-    height: 250px;    /*helped in making it round*/    
-    border-radius: 50%;        
+    max-width: 300px;            
+    height: 300px;    /*helped in making it round*/    
+    border-radius: 10%;        
     border: 5px solid var(--bg);  
     box-shadow: 0 4px 20px var(--fg); 
     display: block;
