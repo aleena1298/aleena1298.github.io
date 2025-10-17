@@ -248,6 +248,50 @@ legend {
 }
 
 
+/* table2(removed this fiel)
+.table2 {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: var(--bg);
+  border: 2px solid black;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px var(--fg);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-sizing: border-box;
+}
 
+.table2 th,
+.table2 td {
+  padding: 15px 15px;
+  text-align: left;
+  border: 2px solid black;
+  vertical-align: top;
+}
+
+.table2 th {
+  background-color: var(--color1);
+  color: var(--color2);
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+.table2 tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table2 tr:hover {
+  background-color: var(--color1);
+}
+
+.table2 caption {
+  caption-side: top;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+  text-align: center;
+} */
 
 
