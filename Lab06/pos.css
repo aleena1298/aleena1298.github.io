@@ -1,0 +1,47 @@
+/* Lab06 */
+/* Positioning Elements */
+body{
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    margin-top: 9vh;
+    padding:0;
+    margin-left: 5px;
+}
+
+#img1 {
+
+  /* margin: 40px; */
+  
+  /* float: right; */
+  /* height: 100px; */
+  width: 500px;
+  /* top: 500px; */
+  /* right: 120px;   */
+  /* left: 80px; */
+}
+
+#banner{
+    padding: 0;
+    margin: 0;
+    background-color:grey;
+    width: 100%;
+    position: fixed;
+    height: 7vh;
+    text-align: center;
+    border: 1px solid black;
+}
+h1{
+    background-color:grey;
+    width: 100%; 
+    border: 1px solid black;
+}
+
+#img2{
+    float: right;
+    float: left;
+    width: 300px;
+   
+}
