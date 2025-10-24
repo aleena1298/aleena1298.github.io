@@ -378,6 +378,8 @@ nav ul li a:hover {
   /* align-items: flex-start; */
   flex-direction: row-reverse;/*reverses the original direction of row*/
   justify-content: center;
+  /* align-content: start;
+  align-content: center; */ /*not showing any affect here beacuse of small div size*/
   gap: 30px;
   margin-top: 20px;
 }
