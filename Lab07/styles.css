@@ -5,6 +5,12 @@
   --color1: rgba(0, 0, 0, 0.05);  
   --color2: hsl(220, 60%, 40%);   
 }
+/*in my grid layout the contents were horizontally scrolling and moving behind 
+the nav bar so i used a universal setter to fix everything inside the width given dont take extra 
+apcae */
+*{
+    box-sizing: border-box;
+}
 
 /*grid layout*/
 body {
@@ -128,6 +134,12 @@ nav ul li a:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
+a[href^="tel"]:hover,
+a[href^="mailto"]:hover,
+a[href*="qau.edu.pk"]:hover {
+ background-color: pink;
+}
+
 /* Lab06 */
 /* Flexbox cards */
 .cards-section {
@@ -152,7 +164,7 @@ nav ul li a:hover {
   flex-grow: 1;
 }
 .card:hover {
-  transform: translateY(-3px);
+  margin: -8px;
   border: 2px solid var(--color2);
 }
 .card img {
