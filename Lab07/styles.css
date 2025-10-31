@@ -120,6 +120,7 @@ nav ul li a:hover {
   background-color: var(--bg);
   border: 2px solid black;
 }
+/* selecctors */
 .table th,
 .table td {
   padding: 12px;
@@ -189,7 +190,7 @@ footer {
   border-radius: 8px;
 }
 
-/*Responsive design*/
+/*responsive design*/
 @media (max-width: 900px) {
   body {
     grid-template-columns: 1fr;
