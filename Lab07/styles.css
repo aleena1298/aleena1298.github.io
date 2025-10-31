@@ -163,6 +163,9 @@ a[href*="qau.edu.pk"]:hover {
   text-align: center;
   flex-grow: 1;
 }
+.card ul{
+    text-align: left;
+}
 .card:hover {
   margin: -8px;
   border: 2px solid var(--color2);
