@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy Loading</title>
+<link rel="stylesheet" href="lazyLoading.css">
+</head>
+
+<body>
+
+<h1>Lazy Loading Demo</h1>
+
+<!-- Desktop Screens -->
+<div class="heading">Desktop Screens</div>
+
+<!-- First image that loads immediately -->
+<img src="Home.png" alt="Home Desktop">
+
+<!--these will load when we will scroll onto them-->
+<img data-src="Login.png" class="lazyImg" alt="Login Desktop">
+<img data-src="SignUp.png" class="lazyImg" alt="SignUp Desktop">
+<img data-src="AllProducts.png" class="lazyImg" alt="Products Desktop">
+<img data-src="Contact.png" class="lazyImg alt="Contact Desktop">
+
+
+<!--Mobile Screens-->
+<!--these will load when we will scroll onto them-->
+<div class="heading">Mobile Screens</div>
+<img data-src="HomeM.png" class="lazyImg" alt="Home Mobile">
+<img data-src="LoginM.png" class="lazyImg" alt="Login Mobile">
+<img data-src="SignUpM.png" class="lazyImg" alt="SignUp Mobile">
+<img data-src="AllProductsM.png" class="lazyImg" alt="Products Mobile">
+<img data-src="ContactM.png" class="lazyImg" alt="Contact Mobile">
+
+
+
+<script>
+    function lazyLoad() {
+        const images = document.querySelectorAll("img.lazyImg");
+        
+        for (let img of images) {
+            if (img.offsetTop < (window.innerHeight + window.pageYOffset)) {
+                img.src = img.dataset.src;
+                img.alt = img.dataset.alt;
+                img.classList.remove("lazy-img");
+            }
+        }
+    }
+
+    document.addEventListener("scroll", lazyLoad);
+    window.addEventListener("resize", lazyLoad);
+    window.addEventListener("orientationChange", lazyLoad);
+
+    //runs only once on page load
+    lazyLoad();
+</script>
+
+</body>
+</html>

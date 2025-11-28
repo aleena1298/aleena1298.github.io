@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+     <link rel="stylesheet" href="form.css">
+</head>
+<!-- <body>
+     <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li> 
+    </ul>
+  </nav> -->
+
+  <main class="primary">
+    <h1 class="heading-color">Information Form</h1>
+
+    <form action="#" method="get" class="form">
+     
+      <fieldset>
+        <legend><strong>Personal Details</strong></legend>
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="10" max="100" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="aleena@gmail.com" required>
+
+      </fieldset>
+
+  <fieldset>
+    <legend><strong>Address Details</strong></legend>
+
+    <label for="street">Street:</label>
+    <input type="text" id="street" name="street" placeholder="House #12, Street 4" required>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" placeholder="Pindii" required>
+
+    <label for="state">State/Province:</label>
+    <input type="text" id="state" name="state" placeholder="Punjab">
+
+    <label for="zip">ZIP/Postal Code:</label>
+    <input type="text" id="zip" name="zip" placeholder="44000">
+  </fieldset>
+
+
+      
+      <fieldset>
+        <legend><strong>Educational Background</strong></legend>
+
+        <label for="education">Highest Qualification:</label>
+        <select id="education" name="education">
+          <option value="">Select</option>
+          <option value="matric">Matriculation</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="bachelors">Bachelor's Degree</option>
+          <option value="masters">Master's Degree</option>
+          <option value="phd">PhD</option>
+        </select>
+
+        <label for="institution">Institution Name:</label>
+        <input type="text" id="institution" name="institution" placeholder="Quaid-e-Azam University">
+
+        <label for="year">Graduation Year:</label>
+        <input type="number" id="year" name="year" placeholder="2025" min="1980" max="2025">
+      </fieldset>
+
+     
+      <fieldset id="skills">
+        <legend ><strong>Skills</strong></legend>
+        <p>Select Skills:</p>
+
+        <label><input type="checkbox" name="skills" value="c++"> C++</label>
+        <label><input type="checkbox" name="skills" value="python"> Python</label>
+        <label><input type="checkbox" name="skills" value="sql"> SQL</label>
+        <label><input type="checkbox" name="skills" value="html"> HTML/CSS</label>
+        <label><input type="checkbox" name="skills" value="javascript"> JavaScript</label>
+      </fieldset>
+
+    
+      <fieldset>
+        <legend><strong>Other Information</strong></legend>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+          <option value="">Select</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select>
+
+        <br>
+        <br><br>
+        <label for="comments">Additional Comments:</label>
+        <textarea id="comments" name="comments" rows="10" cols="60" placeholder="Write here.."></textarea>
+      </fieldset>
+
+        <!-- <input type="submit" value="Submit"> -->
+        <button>Submit</button>
+        <input type="reset" value="Reset">
+    </form>
+  </main>
+
+<script>
+
+// ===== VALID FLAGS (USED FOR SUBMIT CHECK) =====
+var valid = {
+    name: false, age: false, dob: false, email: false,street: false, city: false,
+    province: false, zip: false, institution: false, year: false, education: false,
+    gender: false, comments: false, skills: false
+};
+
+
+
+//name validation
+var Name = document.querySelector('#name');
+Name.addEventListener('change', checkName);
+
+function checkName(){
+    if(this.value.trim().length < 3){ //trim removes spaces from the start and end of string
+        this.style.backgroundColor = "pink";
+        valid.name = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.name = true;
+    }
+}
+
+//Age validation
+//age should be according to max and min defined
+var Age = document.querySelector('#age');
+Age.addEventListener('change', checkAge);
+
+function checkAge(){
+    let ageValue = Number(this.value);
+    if(ageValue < 10 || ageValue > 100){
+        this.style.backgroundColor = "pink";
+        valid.age = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.age = true;
+    }
+}
+
+
+
+//DOB validation
+//if age = 10 DOB should be >= 2015
+var Dob = document.querySelector('#dob');
+Dob.addEventListener('change', checkDob);
+
+function checkDob(){
+    let age = Number(Age.value);
+    let dobValue = new Date(this.value);
+    let minDOB = new Date(2025 - age, 0, 1); // January 1 of required year
+
+    if(dobValue > minDOB){
+        this.style.backgroundColor = "pink";
+        valid.dob = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.dob = true;
+    }
+}
+
+
+
+//email validation
+var Email = document.querySelector('#email');
+Email.addEventListener('change', checkEmail);
+
+function checkEmail(){
+    let re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    if(!re.test(this.value)){
+        this.style.backgroundColor = "pink";
+        valid.email = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.email = true;
+    }
+}
+
+
+
+//address validation
+var Street = document.querySelector('#street');
+Street.addEventListener('change', checkStreet);
+
+function checkStreet(){
+    let re = /^[A-Za-z0-9 ,.#-]{5,}$/;
+
+    if(!re.test(this.value)){
+        this.style.backgroundColor = "pink";
+        valid.street = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.street = true;
+    }
+}
+
+
+
+//city name validation
+var City = document.querySelector('#city');
+City.addEventListener('change', checkCity);
+
+function checkCity(){
+    if(this.value.trim().length < 4){
+        this.style.backgroundColor = "pink";
+        valid.city = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.city = true;
+    }
+}
+
+
+
+//province name validation 
+//KPK contains 3 so not shorter than 3
+var Province = document.querySelector('#state');
+Province.addEventListener('change', checkProvince);
+
+function checkProvince(){
+    if(this.value.trim().length < 3){
+        this.style.backgroundColor = "pink";
+        valid.province = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.province = true;
+    }
+}
+
+
+
+//Postal code validation 
+//must be exactly 5 digits
+var Zip = document.querySelector('#zip');
+Zip.addEventListener('change', checkZip);
+
+function checkZip(){
+    let pattern = /^[0-9]{5}$/;
+
+    if(!pattern.test(this.value)){
+        this.style.backgroundColor = "pink";
+        valid.zip = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.zip = true;
+    }
+}
+
+
+
+//Institution Name
+var Inst = document.querySelector('#institution');
+Inst.addEventListener('change', checkInst);
+
+function checkInst(){
+    if(this.value.trim().length < 3){
+        this.style.backgroundColor = "pink";
+        valid.institution = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.institution = true;
+    }
+}
+
+
+
+//Graduation year validation
+var Year = document.querySelector('#year');
+Year.addEventListener('change', checkYear);
+
+function checkYear(){
+    let yr = Number(this.value);
+    if(yr < 1980 || yr > 2025){
+        this.style.backgroundColor = "pink";
+        valid.year = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.year = true;
+    }
+}
+
+
+
+//Education should be selected from drpdown
+//using === instead of == because === checks both value and type,
+//== does type-conversion and can give incorrect output
+var Edu = document.querySelector('#education');
+Edu.addEventListener('change', checkEdu);
+
+function checkEdu(){
+    if(this.value === ""){
+        this.style.backgroundColor = "pink";
+        valid.education = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.education = true;
+    }
+}
+
+
+
+//Gender should be selected from the dropdown
+var Gender = document.querySelector('#gender');
+Gender.addEventListener('change', checkGender);
+
+function checkGender(){
+    if(this.value === ""){
+        this.style.backgroundColor = "pink";
+        valid.gender = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.gender = true;
+    }
+}
+
+
+
+//Comment must be at least 50 characters
+var Comments = document.querySelector('#comments');
+Comments.addEventListener('change', checkComments);
+
+function checkComments(){
+    if(this.value.trim().length < 50){
+        this.style.backgroundColor = "pink";
+        valid.comments = false;
+    } else {
+        this.style.backgroundColor = "white";
+        valid.comments = true;
+    }
+}
+
+
+
+//Skills validation
+//at least 2 must be selected
+var Skills = document.querySelectorAll("input[name='skills']");
+var SkillsBox = document.querySelector('#skills');
+
+Skills.forEach(s => s.addEventListener('change', checkSkills));
+
+function checkSkills(){
+    let count = 0;
+
+    Skills.forEach(s => {
+        if(s.checked) {
+        count++;
+        }
+    });
+
+    if(count < 2){
+        SkillsBox.style.backgroundColor = "pink";
+        valid.skills = false;
+    } else {
+        SkillsBox.style.backgroundColor = "white";
+        valid.skills = true;
+    }
+}
+
+
+
+//validation on form prevents from submitting
+var form = document.querySelector("form");
+
+form.addEventListener("submit", function(e){
+
+    // check flags 
+    for(let key in valid){
+        if(valid[key] === false){
+            e.preventDefault();
+            alert("Please fill all fields and correct all red fields before submitting");
+            return;
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>

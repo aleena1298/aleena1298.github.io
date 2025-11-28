@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Attribute Selectors Demo</title>
+<style>
+/* 1️⃣ [attr] — selects any element that has a given attribute */
+[title] {
+  background-color: lightyellow;
+  border: 2px solid gold;
+}
+
+/* 2️⃣ [attr="value"] — selects elements whose attribute value is EXACTLY this */
+a[title="posts from this country"] {
+  color: darkgreen;
+  font-weight: bold;
+}
+
+/* 3️⃣ [attr~=value] — matches elements whose attribute contains the given word (space-separated list) */
+[title~="Countries"] {
+  background-color: lightblue;
+  border: 2px dashed blue;
+}
+
+/* 4️⃣ [attr^=value] — matches elements whose attribute value STARTS WITH given text */
+a[href^="mailto"] {
+  color: red;
+  text-decoration: underline;
+}
+
+/* 5️⃣ [attr*=value] — matches elements whose attribute value CONTAINS the given substring ANYWHERE */
+img[src*="flag"] {
+  border: 4px solid purple;
+  border-radius: 8px;
+}
+
+/* 6️⃣ [attr$=value] — matches elements whose attribute value ENDS WITH given text */
+a[href$=".pdf"] {
+  background: url('pdf_icon.svg') no-repeat left center;
+  padding-left: 25px;
+  color: darkred;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<h2>🔹 Attribute Selector Examples</h2>
+
+<!-- [title] selector applies -->
+<p title="Example paragraph">This paragraph has a title attribute.</p>
+
+<!-- [attr="value"] exact match -->
+<a href="#" title="posts from this country">Exact Match Title Example</a><br>
+
+<!-- [attr~=value] contains word "Countries" -->
+<a href="#" title="Posts about Countries of Europe">Has the word "Countries"</a><br>
+
+<!-- [attr^=value] starts with -->
+<a href="mailto:info@poshtrends.com">Send Email</a><br>
+
+<!-- [attr*=value] contains substring -->
+<img src="images/uk-flag-icon.png" width="60" alt="UK Flag">
+
+<!-- [attr$=value] ends with -->
+<a href="report.pdf">Download PDF Report</a><br>
+
+</body>
+</html>

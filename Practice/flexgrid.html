@@ -1,0 +1,209 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Layout Example</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: grid;
+      grid-template-areas:
+        "header header header"
+        "aside content1 content2"
+        "aside flex flex"
+        "footer footer footer";
+      grid-template-columns: 20% 1fr 1fr; /* Sidebar 20%, 2 equal columns */
+      grid-template-rows: auto auto auto auto;
+      gap: 10px; /* space between boxes */
+      padding: 10px;
+      background-color: #f4f4f4;
+      height: 
+    }
+
+    header, footer, aside, div {
+      border: 2px solid black;
+      padding: 15px;
+      background-color: aquamarine;
+      text-align: center;
+      /* height: 300px; */
+    }
+
+    header {
+      grid-area: header;
+    }
+
+    footer {
+      grid-area: footer;
+    }
+
+    aside {
+       
+      grid-area: aside;
+      background-color: lightblue;
+    }
+    nav{
+         display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        height: 50%;
+    }
+
+    .s1 {
+      grid-area: content1;
+    }
+
+    .s2 {
+      grid-area: content2;
+    }
+
+    .s3 {
+      grid-area: flex;
+      display: flex;
+      gap: 10px;
+    }
+
+    .s3 div {
+      background-color: lightcoral;
+      flex: 1;
+      padding: 10px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        grid-template-areas:
+          "header"
+          "aside"
+          "content1"
+          "content2"
+          "flex"
+          "footer";
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Aleena</header>
+
+  <aside>
+    <nav>
+      <a href="#">About</a> |
+      <a href="#">Contacts</a>
+    </nav>
+  </aside>
+
+  <div class="s1">
+    <h3>About</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, omnis optio.</p>
+  </div>
+
+  <div class="s2">
+    <h3>Contacts</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quisquam qui voluptatibus!</p>
+  </div>
+
+  <div class="s3">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+  </div>
+
+  <footer>Copyright &copy; 2025</footer>
+</body>
+</html> -->
+
+
+                   <!-- With semantic tags              -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic Grid Layout</title>
+  <style>
+    body {
+      display: grid;
+      grid-template-areas:
+        "header header header"
+        "aside main main"
+        "aside section section"
+        "footer footer footer";
+      grid-template-columns: 20% 1fr 1fr;
+      gap: 10px;
+      padding: 10px;
+      background-color: #f0f0f0;
+    }
+
+    header, footer, main, aside, section {
+      border: 2px solid black;
+      padding: 15px;
+      background-color: aquamarine;
+      text-align: center;
+    }
+
+    header { grid-area: header; }
+    footer { grid-area: footer; }
+    main   { grid-area: main; }
+    aside  { grid-area: aside; }
+    section { grid-area: section; }
+
+    @media (max-width: 768px) {
+      body {
+        grid-template-areas:
+          "header"
+          "aside"
+          "main"
+          "section"
+          "footer";
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Website Title</h1>
+    <nav>
+      <a href="#">Home</a> |
+      <a href="#">About</a> |
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <aside>
+    <h2>Sidebar</h2>
+    <p>Links or ads go here.</p>
+  </aside>
+
+  <main>
+    <article>
+      <h2>Article Title</h2>
+      <p>This is the main content area where you can write articles or display info.</p>
+    </article>
+  </main>
+
+  <section>
+    <h2>More Info</h2>
+    <p>This section could include related content, images, or project details.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Aleena</p>
+  </footer>
+
+</body>
+</html>
+
+<!--            Practice             -->
+
+
+
+
+

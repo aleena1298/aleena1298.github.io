@@ -1,0 +1,47 @@
+:root {
+  --bg: hsl(0, 0%, 96%);       
+  --fg: rgba(0, 0, 0, 0.8);    
+  --color1: rgba(0, 0, 0, 0.05);  
+  --color2: hsl(220, 60%, 40%);   
+}
+
+
+html {
+    font-size: 16px;
+    background-color: var(--bg)
+}
+body {
+/* removing default margins and padding */
+  margin: 5px;                
+  padding: 5px;
+  min-height: 100vh; /*body is taking 100% of the viewports height*/
+}
+
+/*Form*/
+.form{
+    padding:10px;
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+fieldset {
+  margin-bottom: 30px; /*adding space below every fielset*/
+  padding: 20px;
+  border: 1.5px solid var(--color1);
+  border-radius: 10px;
+  background-color: var(--color1);
+}
+
+legend {
+  font-size: 1.2rem;   
+  font-weight: bold; 
+}
+/* label{
+  display: block;
+  padding: 5px;
+  box-sizing: border-box;
+
+} */
+#skills label{
+    display: block;
+}

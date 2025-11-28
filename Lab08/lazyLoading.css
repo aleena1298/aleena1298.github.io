@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: black;
+}
+
+.heading{
+    font-size: 22px;
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 8px;
+    color: black;
+}
+
+img {
+    width: 100%;
+    max-width: 550px;
+    display: block;
+    margin: 35px auto;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}

@@ -32,7 +32,7 @@ body {
 
 /* grid areas */
 header { grid-area: header; }
-nav { grid-area: nav; }
+nav { grid-area: aside; }
 .primary:nth-of-type(1) { grid-area: about; }
 .primary:nth-of-type(2) { grid-area: education; }
 .cards-section { grid-area: flex; }
@@ -73,7 +73,7 @@ nav {
   align-items: start;
   padding-top: 40px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  height: 100vh;
+  height: 100%;
 }
 nav ul {
   list-style: none;

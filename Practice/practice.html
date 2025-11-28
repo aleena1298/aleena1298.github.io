@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 2 – Grid</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    display:grid;
+    grid-template-areas:
+      "header header header"
+      "sidebar content right"
+      "footer footer footer";
+    grid-template-columns:20% 1fr 20%;
+    grid-template-rows:70px 1fr 60px;
+    gap:10px;
+    height:100vh;
+    padding:10px;
+  }
+
+  header,footer,aside,main,section{
+    border:2px solid #000;
+    background:aquamarine;
+    text-align:center;
+    padding:15px;
+  }
+  header{grid-area:header;}
+  footer{grid-area:footer;}
+  aside{grid-area:sidebar;}
+  main{grid-area:content;}
+  section{grid-area:right;}
+
+  @media (max-width:768px){
+    body{
+      grid-template-areas:
+        "header"
+        "sidebar"
+        "content"
+        "right"
+        "footer";
+      grid-template-columns:1fr;
+      grid-template-rows:auto;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>Header</header>
+  <aside>Sidebar</aside>
+  <main>Main Content</main>
+  <section>Right Panel</section>
+  <footer>Footer</footer>
+
+
+  <h1>Book Cover Preview</h1>
+  
+  <!-- The <a> tag makes the image clickable -->
+  <a href="cover-large.jpg" target="_blank">
+    <img src="cover-small.jpg" alt="Small preview of the book cover">
+  </a>
+
+  <p>Click the small image to view the full-sized book cover.</p>
+  <br>
+  <blockquote>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, quis inventore natus est consequuntur iure labore nostrum at, cumque optio quas vero fugit laudantium blanditiis, animi modi dolore assumenda vel temporibus eum impedit doloribus accusamus nemo! Fugit laboriosam eveniet saepe minima molestiae nisi, nemo magni nulla non, distinctio modi provident!</blockquote>
+
+
+  <table border="1">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+  </table>
+
+
+
+</body>
+</html>

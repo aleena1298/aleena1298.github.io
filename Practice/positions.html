@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Cover Example</title>
+  <style>
+    /* Parent: Book Cover */
+    .book-cover {
+      position: relative;        /* 🔹 establishes positioning context for child */
+      width: 250px;
+      height: 350px;
+      background: url('https://images.unsplash.com/photo-1529655683826-aba9b3e77383') center/cover no-repeat;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin: 50px auto;
+    }
+
+    /* Child: Decorative border */
+    .border-overlay {
+      position: absolute;       
+       /* 🔹 positioned relative to .book-cover */
+      top: 10px;                 /* 10px from top of parent */
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 4px solid gold;
+      border-radius: 10px;
+      box-sizing: border-box;
+      pointer-events: none;      /* allows clicks to pass through */
+    }
+
+    /* Optional: Title text inside book */
+    .book-title {
+      position: absolute;
+      bottom: 20px;
+      left: 50px;
+      right: 50px;
+      text-align: center;
+      color: white;
+      font-size: 1.4em;
+      font-family: Georgia, serif;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 0 0 10px 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-cover">
+    <div class="border-overlay"></div>
+    <div class="book-title">The Golden Path</div>
+  </div>
+
+</body>
+</html>
