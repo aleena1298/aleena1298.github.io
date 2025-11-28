@@ -30,3 +30,8 @@ img {
     border-radius: 10px;
     background-color: whitesmoke;
 }
+
+.lazyImg {
+    min-height: 350px;       /* gives space to image before loading */
+    background-color: lightgray;
+}

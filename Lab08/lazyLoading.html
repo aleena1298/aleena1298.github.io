@@ -9,7 +9,7 @@
 
 <body>
 
-<h1>Lazy Loading Demo</h1>
+<h1>Lazy Loading</h1>
 
 <!-- Desktop Screens -->
 <div class="heading">Desktop Screens</div>
@@ -21,7 +21,7 @@
 <img data-src="Login.png" class="lazyImg" alt="Login Desktop">
 <img data-src="SignUp.png" class="lazyImg" alt="SignUp Desktop">
 <img data-src="AllProducts.png" class="lazyImg" alt="Products Desktop">
-<img data-src="Contact.png" class="lazyImg alt="Contact Desktop">
+<img data-src="Contact.png" class="lazyImg" alt="Contact Desktop">
 
 
 <!--Mobile Screens-->
@@ -40,17 +40,18 @@
         const images = document.querySelectorAll("img.lazyImg");
         
         for (let img of images) {
+            //offsetTop gets image position from top of page
+            //pageYOffset tells how much user has scrolled
             if (img.offsetTop < (window.innerHeight + window.pageYOffset)) {
-                img.src = img.dataset.src;
-                img.alt = img.dataset.alt;
-                img.classList.remove("lazy-img");
+                img.src = img.dataset.src;//loads the actual image
+                img.classList.remove("lazyImg"); //removes a CSS class
             }
         }
     }
 
-    document.addEventListener("scroll", lazyLoad);
-    window.addEventListener("resize", lazyLoad);
-    window.addEventListener("orientationChange", lazyLoad);
+    document.addEventListener("scroll", lazyLoad);//runs function when scrolling
+    window.addEventListener("resize", lazyLoad);//runs on window resize
+    window.addEventListener("orientationChange", lazyLoad);//runs on device rotation
 
     //runs only once on page load
     lazyLoad();
