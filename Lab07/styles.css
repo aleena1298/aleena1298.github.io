@@ -28,8 +28,7 @@ body {
   background-color: var(--bg);
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
-  min-height: 100vh;   /* normal full height */
-  /* ⭐ REMOVED overflow-y: auto AND height:100vh (sticky bug) */
+  min-height: 100vh;   
 }
 
 /* grid areas */
