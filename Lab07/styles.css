@@ -5,6 +5,7 @@
   --color1: rgba(0, 0, 0, 0.05);  
   --color2: hsl(220, 60%, 40%);   
 }
+
 /*in my grid layout the contents were horizontally scrolling and moving behind 
 the nav bar so i used a universal setter to fix everything inside the width given dont take extra 
 apcae */
@@ -27,12 +28,13 @@ body {
   background-color: var(--bg);
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
-  min-height: 100vh;
+  min-height: 100vh;   /* normal full height */
+  /* ⭐ REMOVED overflow-y: auto AND height:100vh (sticky bug) */
 }
 
 /* grid areas */
 header { grid-area: header; }
-nav { grid-area: aside; }
+nav { grid-area: nav; } 
 .primary:nth-of-type(1) { grid-area: about; }
 .primary:nth-of-type(2) { grid-area: education; }
 .cards-section { grid-area: flex; }
@@ -60,9 +62,12 @@ footer { grid-area: footer; }
 }
 
 /* navbar */
+
 nav {
-  position: sticky;
-  top: 0;
+  position: sticky;     /*makes aside sticky */
+  top: 0;               /*stick to top */
+  align-self: start;    /*required inside grid */
+  height: 100vh;        
   left: 0;
   bottom: 0;
   width: 100%;
@@ -73,8 +78,8 @@ nav {
   align-items: start;
   padding-top: 40px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  height: 100%;
 }
+
 nav ul {
   list-style: none;
   display: flex;
@@ -234,4 +239,3 @@ footer {
     height: 120px;
   }
 }
-
