@@ -1,78 +1,111 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-// const mongoose = require("mongoose")
+// Load environment variables (LOCAL only)
+require("dotenv").config();
+
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 
-// Body parser middleware
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files 
-app.use(express.static(path.join(__dirname, 'public')));
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
 
-let orders = []; 
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
 
-const storagePath = path.join(__dirname, 'public', 'orders.json');
 
-try {
-  const data = fs.readFileSync(storagePath, 'utf8');
-  orders = JSON.parse(data);
-  console.log("Orders loaded:", orders.length);
-} catch (err) {
-  console.log("Error loading file:", err);
-}
+// Schema
+const orderSchema = new mongoose.Schema({
+  orderId: String,
+  customerName: String,
+  productName: String,
+  quantity: Number,
+  price: Number
+});
 
-// --------------------
-// ROUTES
-// --------------------
+const Order = mongoose.model("Order", orderSchema);
 
-// Home route
-app.get('/', (req, res) => {
-  res.json(orders);
+
+// Routes
+// opens html form
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "add.html"));
+});
+
+// Saves form data to MongoDB
+app.post("/orders", async (req, res) => {
+  try {
+    const order = await Order.create(req.body);
+    res.send("Order saved in database");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 // Get all orders
-app.get('/orders', (req, res) => {
-  res.json(orders);
-});
-
-// Search orders by product name
-app.get('/orders/productName/:subName', (req, res) => {
-  const subName = req.params.subName.toLowerCase();
-
-  const result = orders.filter(c =>
-    c.productName.toLowerCase().includes(subName)
-  );
-
-  res.json(result);
-});
-
-// Get order by ID
-app.get('/orders/:symbol', (req, res) => {
-  const symbol = req.params.symbol;
-  const order = orders.find(c => c.orderId == symbol);
-
-  if (!order) {
-    return res.status(404).json({ message: "Order not found" });
+app.get("/orders", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-
-  res.json(order);
 });
 
-// Add new order (in-memory only on Vercel)
-app.post('/orders', (req, res) => {
-  orders.push(req.body);
-
-  // fs.writeFile(storagePath, JSON.stringify(orders, null, 2), err => console.log(err));
-
-  res.send('Order added (temporary on Vercel)');
+// Get order by MongoDB ID
+app.get("/orders/:id", async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-// app.listen(8080);
+// Update order
+app.put("/orders/:id", async (req, res) => {
+  try {
+    const order = await Order.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+    res.json({ message: "Order updated successfully", order });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
-// EXPORT APP FOR VERCEL
+// Delete order
+app.delete("/orders/:id", async (req, res) => {
+  try {
+    const order = await Order.findByIdAndDelete(req.params.id);
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+    res.json({ message: "Order deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// For Local Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 module.exports = app;
