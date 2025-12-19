@@ -1,89 +1,78 @@
-const express = require('express')
-const path = require('path')
-const fs = require('fs')
-const mongoose = require("mongoose");
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+// const mongoose = require("mongoose")
 
-const app = express()
+const app = express();
 
-// hadles the pst req containing url encoded data in the body of the requeat
-const bodyParser = require('body-parser')
+// Body parser middleware
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-// app.use(express.json()) inbuilt
-app.use("/views", express.static(path.join(process.cwd(), "/views")));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-let orders;
-const storagePath = path.join(process.cwd(), "orders.json");
+// Serve static files 
+app.use(express.static(path.join(__dirname, 'public')));
 
-// to serve static files 
-app.use(express.static(path.join(__dirname, 'Nodejs')));
 
-// GET method
-// Routes
-// get all orders
+let orders = []; 
+
+const storagePath = path.join(__dirname, 'public', 'orders.json');
+
+try {
+  const data = fs.readFileSync(storagePath, 'utf8');
+  orders = JSON.parse(data);
+  console.log("Orders loaded:", orders.length);
+} catch (err) {
+  console.log("Error loading file:", err);
+}
+
+// --------------------
+// ROUTES
+// --------------------
+
+// Home route
 app.get('/', (req, res) => {
-    res.json(orders);
-})
+  res.json(orders);
+});
 
-// we can also get all orders by this
+// Get all orders
 app.get('/orders', (req, res) => {
-    res.json(orders);
-})
+  res.json(orders);
+});
 
-
-
-// search orders by product name 
+// Search orders by product name
 app.get('/orders/productName/:subName', (req, res) => {
+  const subName = req.params.subName.toLowerCase();
 
-    const subName = req.params.subName.toLowerCase();
+  const result = orders.filter(c =>
+    c.productName.toLowerCase().includes(subName)
+  );
 
-    const result = orders.filter(c =>
-        c.productName.toLowerCase().includes(subName)
-    );
+  res.json(result);
+});
 
-    res.json(result);
-})
+// Get order by ID
+app.get('/orders/:symbol', (req, res) => {
+  const symbol = req.params.symbol;
+  const order = orders.find(c => c.orderId == symbol);
 
+  if (!order) {
+    return res.status(404).json({ message: "Order not found" });
+  }
 
-// get one order by symbol
-app.get('/orders/:chacha', (req, res) => {
+  res.json(order);
+});
 
-    const symbol = req.params.chacha;
-    const order = orders.find(c => c.orderId == symbol);
-
-    if (!order) {
-        return res.status(404).json({ message: "Order not found" });
-    }
-
-    res.json(order);
-})
-
-// POST Method
-// request-parser will help us in parsing the data submitted through form
-// whatever it will receive it will add to the order's object
+// Add new order (in-memory only on Vercel)
 app.post('/orders', (req, res) => {
-    // const rawBody = req.body;
+  orders.push(req.body);
 
-    // add new order to array
-    orders.push(req.body);
+  // fs.writeFile(storagePath, JSON.stringify(orders, null, 2), err => console.log(err));
 
-    // write updated list to file
-    fs.writeFile(storagePath, JSON.stringify(orders, null, 2), (err)=> console.log(err));
+  res.send('Order added (temporary on Vercel)');
+});
 
-    res.write('Order added');
-    res.end();
-})
+// app.listen(8080);
 
-
-// Load json file
-fs.readFile(storagePath, (err, data) => {
-    if (!err) {
-        orders = JSON.parse(data);
-        console.log("Orders loaded:", orders.length);
-        app.listen(8080, () => console.log("Server running on 8080"));
-    } 
-    else {
-        console.log("Error loading file:", err);
-    }
-})
-
+// EXPORT APP FOR VERCEL
+module.exports = app;

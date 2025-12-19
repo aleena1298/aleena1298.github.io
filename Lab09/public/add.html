@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Order</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f9fc;
+            padding: 20px;
+        }
+
+        form {
+            width: 300px;
+            margin: auto;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #125B66;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 7px;
+            margin-top: 5px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 18px;
+            width: 100%;
+            padding: 10px;
+            background: #125B66;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0E4A52;
+        }
+    </style>
+
+</head>
+<body>
+
+    <form action="/orders" method="post">
+
+        <legend>Add New Order</legend>
+
+        <!-- Order ID -->
+        <label>Order ID:</label>
+        <input type="text" name="orderId" placeholder="e.g., O1015" required>
+
+        <!-- Customer Name -->
+        <label>Customer Name:</label>
+        <input type="text" name="customerName" placeholder="e.g., Ali Khan" required>
+
+        <!-- Product Name Dropdown -->
+        <label>Product Name:</label>
+        <select name="productName" required>
+            <option value="">-- Select Product --</option>
+            <option>Glamora Vitamin-C Serum</option>
+            <option>GlowMax Anti-Aging Serum</option>
+            <option>Acneca Anti-Acne Serum</option>
+            <option>Ray Set Sunblock SPF-60</option>
+            <option>Delight Moisturizing Bar</option>
+            <option>Acneca Bar 90g</option>
+            <option>Delight Bar 90g</option>
+            <option>Scar Gel Silicon</option>
+            <option>It-Scab 90g</option>
+        </select>
+
+        <!-- Quantity -->
+        <label>Quantity:</label>
+        <input type="number" name="quantity" placeholder="e.g., 2" min="1" max="10" required>
+
+        <!-- Total Price -->
+        <label>Total Price:</label>
+        <input type="number" name="totalPrice" placeholder="e.g., 3500" min="280" max="100000" required>
+
+        <button type="submit">Add Order</button>
+
+    </form>
+
+</body>
+</html>
