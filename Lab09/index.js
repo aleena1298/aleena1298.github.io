@@ -1,23 +1,16 @@
-// Load environment variables (LOCAL only)
 require("dotenv").config();
-
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
-
 const app = express();
 
-
-// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
-
-// MongoDB connection
+// to connect MongoDb
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB connection established"))
   .catch(err => console.error("MongoDB connection error:", err));
 
 
@@ -34,8 +27,13 @@ const Order = mongoose.model("Order", orderSchema);
 
 
 // Routes
-// opens html form
+
 app.get("/", (req, res) => {
+  res.send("API is working");
+})
+// opens html form
+// http://localhost:3000/add.html
+app.get("/add.html", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "add.html"));
 });
 
@@ -50,6 +48,7 @@ app.post("/orders", async (req, res) => {
 });
 
 // Get all orders
+// http://localhost:3000/orders/
 app.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find();
@@ -60,17 +59,33 @@ app.get("/orders", async (req, res) => {
 });
 
 // Get order by MongoDB ID
-app.get("/orders/:id", async (req, res) => {
-  try {
-    const order = await Order.findById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ message: "Order not found" });
-    }
-    res.json(order);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+// app.get("/orders/:id", async (req, res) => {
+//   try {
+//     const order = await Order.findById(req.params.id);
+//     if (!order) {
+//       return res.status(404).json({ message: "Order not found" });
+//     }
+//     res.json(order);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
+// Find order by orderId 
+// http://localhost:3000/orders/orderId/O101
+app.get("/orders/orderid/:orderId", (req, res) => {
+  Order.findOne({ orderId: req.params.orderId })
+    .then(order => {
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      res.json(order);
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
 });
+
 
 // Update order
 app.put("/orders/:id", async (req, res) => {
